@@ -8,6 +8,15 @@ All dates in this document are approximate.
 
 ## Changes
 
+20211105: The "NTC 100K beta 3950" temperature sensor is deprecated.
+This sensor will be removed in the near future.  Most users will find
+the "Generic 3950" temperature sensor more accurate.  To continue to
+use the older (typically less accurate) definition, define a custom
+[thermistor](Config_Reference.md#thermistor) with `temperature1: 25`,
+`resistance1: 100000`, and `beta: 3950`.
+
+20210929: Klipper v0.10.0 released.
+
 20210903: The default [`smooth_time`](Config_Reference.md#extruder)
 for heaters has changed to 1 second (from 2 seconds).  For most
 printers this will result in more stable temperature control.
