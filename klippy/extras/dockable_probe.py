@@ -243,9 +243,11 @@ class DockableProbe:
 
         #Gcode Commands
         self.gcode.register_command('ATTACH_PROBE',
-                                    self.cmd_ATTACH_PROBE)
+                                    self.cmd_ATTACH_PROBE,
+                                    desc=self.cmd_ATTACH_PROBE_help)
         self.gcode.register_command('DETACH_PROBE',
-                                    self.cmd_DETACH_PROBE)
+                                    self.cmd_DETACH_PROBE,
+                                    desc=self.cmd_DETACH_PROBE_help)
 
         #Event Handlers
         self.printer.register_event_handler('klippy:connect',
@@ -298,9 +300,15 @@ class DockableProbe:
                         else:
                             self.z_homes_positive = False
             self.safe_z_position = home_xy
+    
+        
+    cmd_ATTACH_PROBE_help = ("Attach the probe to the toolhead")
     def cmd_ATTACH_PROBE(self, gcmd):
         return_pos = self.toolhead.get_position()
         self.attach_probe(return_pos)
+        
+    cmd_DETACH_PROBE_help = ("Detach the probe from the toolhead and return"
+                             " it to the dock")
     def cmd_DETACH_PROBE(self, gcmd):
         return_pos = self.toolhead.get_position()
         self.detach_probe(return_pos)
